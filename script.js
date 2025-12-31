@@ -1,51 +1,91 @@
-/* Runder */
-let soundOn=true;
-const click=new Audio("data:audio/wav;base64,UklGRkYAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQYAAAD//w8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw==");
-const point=new Audio("data:audio/wav;base64,UklGRkYAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQgAAAD//w8PDw8PDw8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8PDw8PDw8PDw8=");
-const tada=new Audio("data:audio/wav;base64,UklGRlIAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YVQAAACAgH9/gICAgICAgICAf39/f4CAgICAgH9/f39/f4CAgICAgH9/f39/f4CAgICAgH9/f39/f4CAgICAgICA");
-function play(s){if(soundOn)s.play();}
-document.getElementById("toggleSound").onclick=()=>{soundOn=!soundOn;toggleSound.textContent=soundOn?"🔊":"🔇";};
+/* 📣 Niki's MusikBattle - Direkte start version */
 
-let rounds=[
-{name:"Runde 1 — Gæt kunstner",questions:[
-{q:"Take On Me?",a:"A-ha",link:"https://youtu.be/djV11Xbc914"},
-{q:"Billie Jean?",a:"Michael Jackson",link:"https://youtu.be/Zi_XLOBDo_Y"}]},
-{name:"Runde 2 — Gæt kunstner",questions:[
-{q:"Hungry Like The Wolf?",a:"Duran Duran",link:"https://youtu.be/oOg5VxrRTi0"},
-{q:"Smalltown Boy?",a:"Bronski Beat",link:"https://youtu.be/88sARuFu-tc"}]}
+/* 🎶 Lydsystem */
+let soundOn = true;
+
+const clickSound = new Audio("data:audio/wav;base64,UklGRkYAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQYAAAD//w8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw==");
+const pointSound = new Audio("data:audio/wav;base64,UklGRkYAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQgAAAD//w8PDw8PDw8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8PDw8PDw8PDw8=");
+const tadaSound = new Audio("data:audio/wav;base64,UklGRlIAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YVQAAACAgH9/gICAgICAgICAf39/f4CAgICAgH9/f39/f4CAgICAgH9/f39/f4CAgICAgH9/f39/f4CAgICAgICA");
+
+function play(s){ if(soundOn) s.play(); }
+
+/* 🔇 Lydknap */
+document.addEventListener("click", e=>{
+  if(e.target.id==="toggleSound"){
+    soundOn=!soundOn;
+    e.target.textContent = soundOn ? "🔊" : "🔇";
+  }
+});
+
+/* 📊 Runder og spørgsmål */
+const rounds = [
+  {name:"Runde 1 — Gæt kunstner", questions:[
+    {q:"Take On Me?", a:"A-ha", link:"https://youtu.be/djV11Xbc914"},
+    {q:"Billie Jean?", a:"Michael Jackson", link:"https://youtu.be/Zi_XLOBDo_Y"},
+    {q:"Hvor skal vi sove i nat?", a:"Laban", link:"https://youtu.be/mQriV5g5z5g"},
+    {q:"Don’t Go?", a:"Yazoo", link:"https://youtu.be/_sQGwDeambg"},
+    {q:"Slice Me Nice?", a:"Fancy", link:"https://youtu.be/N5qYF7LcLxY"},
+    {q:"Girls on Film?", a:"Duran Duran", link:"https://youtu.be/oOg5VxrRTi0"},
+    {q:"Vilde kaniner?", a:"Gnags", link:"https://youtu.be/Lj9G8xF8oTw"},
+    {q:"Unfinished Sympathy?", a:"Massive Attack", link:"https://youtu.be/ZWmrfgj0MZI"},
+    {q:"Smalltown Boy?", a:"Bronski Beat", link:"https://youtu.be/88sARuFu-tc"},
+    {q:"To lys på et bord?", a:"Otto Brandenburg", link:"https://youtu.be/ea3gs7YQJ8Y"},
+    {q:"Don’t Cry Tonight?", a:"Savage", link:"https://youtu.be/c1rG8kMmsf8"},
+    {q:"Glor på vinduer?", a:"Anne Linnet", link:"https://youtu.be/5zFf6G5frAg"},
+  ]}
 ];
 
-let r=0,i=0,score=0;
+/* 📌 Variabler */
+let r=0, i=0, score=0;
 
-const roundInfo=document.getElementById("roundInfo"),
-qEl=document.getElementById("question"),
-aEl=document.getElementById("answer"),
-sample=document.getElementById("sample");
+/* 📌 Elementer */
+const qEl = document.getElementById("question");
+const aEl = document.getElementById("answer");
+const sample = document.getElementById("sample");
+const roundInfo = document.getElementById("roundInfo");
 
+/* 📌 Indlæs spørgsmål */
 function load(){
-roundInfo.textContent=rounds[r].name;
-let cur=rounds[r].questions[i];
-qEl.textContent=cur.q;
-aEl.classList.add("hidden");
-aEl.textContent=cur.a;
-sample.innerHTML=`<a href="${cur.link}" target="_blank">🎧 Hør sample</a>`;
-}
-function next(){
-if(i<rounds[r].questions.length-1){i++;load();}
-else end();
-}
-function prev(){if(i>0){i--;load();}}
-function end(){
-quiz-screen.style.display="none";
-score.style.display="block";
-document.getElementById("scoreboard").innerHTML=`Point: ${score}`;
-play(tada);
-}
-document.getElementById("startGame").onclick=()=>{start-screen.classList.add("hidden");quiz-screen.classList.remove("hidden");load();}
-document.getElementById("nextBtn").onclick=()=>{play(click);next();}
-document.getElementById("prevBtn").onclick=()=>{play(click);prev();}
-document.getElementById("showBtn").onclick=()=>{play(click);aEl.classList.remove("hidden");}
-document.getElementById("addPoint").onclick=()=>{score++;play(point);}
-document.getElementById("undoPoint").onclick=()=>{if(score>0)score--;}
-document.getElementById("nextRound").onclick=()=>{r++;i=0;score=score;score.style;startRound();};
+  const round = rounds[r];
+  const item = round.questions[i];
 
+  roundInfo.textContent = round.name;
+  qEl.textContent = item.q;
+  aEl.textContent = item.a;
+  aEl.classList.add("hidden");
+  sample.classList.remove("hidden");
+  sample.href = item.link;
+}
+
+/* ➡️ Næste */
+function next(){
+  if(i < rounds[r].questions.length - 1){
+    i++; load(); play(clickSound);
+  } else end();
+}
+
+/* ⬅️ Tilbage */
+function prev(){
+  if(i>0){i--; load(); play(clickSound);}
+}
+
+/* 🏁 Runde slut */
+function end(){
+  document.getElementById("quiz-screen").style.display="none";
+  document.getElementById("score-screen").style.display="block";
+  document.getElementById("final-score").textContent = score;
+  play(tadaSound);
+}
+
+/* 🔥 Start direkte */
+document.getElementById("start-screen").style.display="none";
+document.getElementById("quiz-screen").style.display="block";
+load();
+
+/* 🎛️ Knapper */
+document.getElementById("nextBtn").onclick = next;
+document.getElementById("prevBtn").onclick = prev;
+document.getElementById("showBtn").onclick = ()=>{aEl.classList.remove("hidden");play(clickSound)};
+document.getElementById("addPoint").onclick = ()=>{score++;play(pointSound)};
+document.getElementById("undoPoint").onclick = ()=>{if(score>0)score--;play(clickSound)};
+document.getElementById("nextRound").onclick = ()=>{location.reload()};
