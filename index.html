@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niki's MusikBattle 🎶</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="grafik/nb-cassette.png">
+</head>
+
+<body>
+<!-- ⭐ START SKÆRM -->
+<div id="start-screen" class="screen active">
+  <h1 class="logo neon">🎶 Niki's MusikBattle 🎶</h1>
+  <p class="tagline">80'er & 90'er Music Quiz</p>
+  <button id="startGame" class="btn start">START 🎧</button>
+</div>
+
+<!-- ⭐ QUIZ SKÆRM -->
+<div id="quiz-screen" class="screen hidden">
+  <header>
+    <h2 id="roundInfo">Runde 1 — Gæt kunstner</h2>
+    <button id="toggleSound" class="btn small">🔊</button>
+  </header>
+
+  <main>
+    <div id="question" class="question">Tryk næste ➡️</div>
+    <p id="answer" class="answer hidden"></p>
+    <p id="sample" class="sample"></p>
+  </main>
+
+  <div class="controls">
+    <button id="prevBtn" class="btn small">⬅️ Tilbage</button>
+    <button id="nextBtn" class="btn">➡️ Næste</button>
+  </div>
+
+  <div class="controls">
+    <button id="showBtn" class="btn">👁️ Vis svar</button>
+    <button id="addPoint" class="btn green">+1 Point</button>
+    <button id="undoPoint" class="btn red">↩️ Fortryd</button>
+  </div>
+</div>
+
+<!-- ⭐ SCORE SKÆRM -->
+<div id="score" class="screen hidden">
+  <h2>Runden er slut 🎉</h2>
+  <p id="scoreboard"></p>
+  <button id="nextRound" class="btn start">➡️ Næste runde</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

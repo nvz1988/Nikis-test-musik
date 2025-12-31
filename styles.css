@@ -1,0 +1,11 @@
+body{background:#000;color:white;font-family:sans-serif;margin:0;padding:20px;text-align:center;}
+.neon{color:#00f6ff;text-shadow:0 0 8px #00f6ff,0 0 20px #fffa00;}
+.btn{padding:12px 18px;border-radius:10px;margin:8px;border:none;background:#00f6ff;color:#000;font-weight:bold;}
+.btn.start{background:#fffa00;}
+.btn.green{background:#00ff99;}
+.btn.red{background:#ff0066;color:white;}
+.btn.small{font-size:0.8rem;}
+.hidden{display:none;}
+.screen{display:none;}
+.screen.active{display:block;}
+.question{font-size:1.4rem;margin:20px 0;}

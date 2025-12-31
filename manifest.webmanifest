@@ -1,0 +1,15 @@
+{
+  "name": "Niki's MusikBattle",
+  "short_name": "MusikBattle",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00f6ff",
+  "icons": [
+    {
+      "src": "grafik/nb-cassette.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
